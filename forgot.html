@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>this is about</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3 mt-5">
+
+					<div class="card">
+						<div class="card-body">
+
+							<h1 class="text-center mt-1">Conform Details here</h1>
+							<div th:if="${session.message}"
+								th:classappend="${session.message.type}" class="alert "
+								role="alert">
+								<p th:text="${session.message.content}"></p>
+								<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+
+							<form th:action="@{/verify-details}" method="post">
+
+
+								<!-- User email field -->
+								<div class="form-group">
+									<label for="userEmail">User Email</label><input type="email"
+										name="e1" id="userEmail" placeholder="Enter User Email Here"
+										class="form-control">
+								</div>
+
+
+
+								<!-- User password field -->
+								<div class="form-group">
+									<label for="userPassword">User Name</label><input type="text"
+										name="cont" id="userName" placeholder="Enter User Name Here"
+										class="form-control">
+								</div>
+
+								<!-- Button -->
+								<div class="text-center">
+									<button class="btn btn-outline-primary " type="submit">Next</button>
+								</div>
+
+
+
+
+							</form>
+
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+
+	</section>
+</body>
+</html>

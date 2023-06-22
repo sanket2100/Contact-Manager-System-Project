@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="text-center mb-3">
+						<span th:text="${user.name}"></span>'s Contact List
+					</h1>
+					
+					<!-- search field -->
+					<div class="search-container my-4">
+					
+					<input onkeyup="search()" id="search-input" type="text" class="form-control" placeholder="Search your contact"/>
+					<div class="search-result">
+					
+					</div>
+					</div>
+					
+					
+					<table class="table">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Sr.No</th>
+								<th scope="col">Contact-Name</th>
+								<th scope="col">Contact-SecondName</th>
+								<th scope="col">Contact-Email</th>
+								<th scope="col">Contact-Work</th>
+								<th scope="col">Contact-PhoneNo</th>
+								<!-- <th scope="col">Contact-Description</th>
+								<th scope="col">User-Id</th> -->
+								<th scope="col">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<h1 th:each="u:${cont }">
+								<tr>
+									<th scope="row" th:text="${'SCM2023' + u.cid }"></th>
+									<td th:text="${u.name }"></td>
+									<td th:text="${u.secondName }"></td>
+									<td ><a th:href="@{'/user/'+${u.cid}+'/contact'}"><span th:text="${u.email }"></span></a></td>
+									<td th:text="${u.work }"></td>
+									<td th:text="${u.phone }"></td>
+									<!-- <td th:text="${u.description }"></td>
+									<td th:text="${u.user.id }"></td> -->
+									<td><a th:href="@{'/user/delete/'+${u.cid }}"><i
+											class="fa fa-trash text-danger" aria-hidden="true"></i> </a> <a
+										th:href="@{'/user/update/'+${u.cid}}"> <i
+											class="fa fa-pencil text-warning" aria-hidden="true"></i>
+									</a></td>
+								</tr>
+							</h1>
+						</tbody>
+
+					</table>
+
+					<!-- Pegination -->
+					<nav aria-label="Page navigation example" >
+						<ul class="pagination">
+							<li th:if="${currentPage!=0}" class="page-item"><a th:href="@{'/user/view-contact/'+${currentPage-1}}" class="page-link" href="#">Previous</a></li>
+							<li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item"><a th:href="@{'/user/view-contact/'+${i-1}}" class="page-link" href="#"><span th:text="${i}"></span></a></li>
+							<li th:if="${currentPage+1!=totalPages}" class="page-item"><a th:href="@{'/user/view-contact/'+${currentPage+1}}" class="page-link" href="#">Next</a></li>
+						</ul>
+					</nav>
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace=normal/base::layout(~{::section})>
+<head>
+<meta charset="UTF-8" />
+<title>this is about</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+		<div class="card">
+		<div class="card-body">
+		
+		<div class="text-center" th:if="${contact}">
+			<h1>
+				<span th:text="${contact.name}"></span>'s Contact details
+			</h1>
+			<h3>________________________________________________</h3>
+			<h2 th:text="${contact.phone}"></h2>
+			<br>
+			<h2 th:text="${contact.email}"></h2>
+			<br>
+			<h2 th:text="${contact.secondName}"></h2>
+			<br>
+			<h2 th:text="${contact.work}"></h2>
+			<br>
+			<h2 th:text="${contact.description}"></h2>
+
+		</div>
+		<div class="text-center text-danger" th:unless="${contact}">
+		<h1>Your are not accessible to this contact</h1>
+		</div>
+		
+		</div>
+		
+		</div>
+		</div>
+	</section>
+</body>
+</html>
